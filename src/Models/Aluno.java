@@ -9,80 +9,74 @@ package Models;
  *
  * @author marcu
  */
-public class Aluno extends EntidadeEscolar {
+public class Aluno {
     // Atributos ---------------------------------------------------------------------------
+    private String nome;
     private String codigoAluno;
     private String serie;
-    Turma turma;
+    private String cidade;
+    private String email;
+    private String estado;
+    private String telefone;
+    private String turma;
 
-    // Construtores ------------------------------------------------------------------------
-    public Aluno(String codigoAluno, String serie, String nome, String endereco, String telefone ){
-        super(nome, endereco, telefone); // invocação do construtor da classe pai
-        this.codigoAluno=codigoAluno;
-        this.serie=serie;
-    }
-    public Aluno(String codigoAluno, String serie, String nome, String endereco, String telefone, String turma ){
-        super(nome, endereco, telefone); // invocação do construtor da classe pai
-        this.codigoAluno=codigoAluno;
-        this.serie=serie;
-        this.turma.setCodigoTurma(turma);
-    }
+    
 
 
-    //implementação obrigatória dos metódos abstratos da classe pai
-    @Override
-    public String getNome() {//implementação do método abstrato
+    //Getters & Setters ------------------------------------------------------------------
+ 
+    public String getNome() {
         return nome;
     }
-    @Override
-    public String getEndereco() {
-        return endereco;
-    }
-    @Override
     public String getTelefone() {
         return telefone;
     }
-
-    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
-    @Override
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    @Override
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    //Getters & Setters ------------------------------------------------------------------
     public String getCodigoAluno() {
         return codigoAluno;
     }
     public String getSerie() {
         return serie;
     }
-    public Turma getTurma() {
+    public String getTurma() {
         return turma;
     }
-
     public void setCodigoAluno(String codigoAluno) {
         this.codigoAluno = codigoAluno;
     }
     public void setSerie(String serie) {
         this.serie = serie;
     }
-    public void setTurma(Turma turma) {
+    public void setTurma(String turma) {
         this.turma = turma;
     }
-
-    //Metodos-------------------------------------------------------------
-
-
-    @Override
-    public String toString() {
-        return "Aluno: "+getNome()+" | Codigo: "+getCodigoAluno()+" | Telefone: "+getTelefone()+ " | Enedereço: "+getEndereco()+" | Série: "+getSerie()+" | Turma: "+turma.getCodigoTurma()+
-                "|";
+    public String getCidade() {
+        return cidade;
     }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
 }

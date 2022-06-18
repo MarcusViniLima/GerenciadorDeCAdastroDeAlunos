@@ -28,13 +28,8 @@ public class MenuPrincipalController {
     
     
     public void navegarParaBusca(){
-        Busca buscaAluno = new Busca();
-        buscaAluno.setVisible(true);
-        this.view.dispose();
-    }
-    public void navegarParaLista(){
-        Busca buscaAluno = new Busca();
-        buscaAluno.setVisible(true);
+        Busca busca = new Busca();
+        busca.setVisible(true);
         this.view.dispose();
     }
     

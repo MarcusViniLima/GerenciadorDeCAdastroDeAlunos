@@ -5,21 +5,29 @@
  */
 package View;
 
+import Controller.BuscaController;
+import Models.Aluno;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author marcu
  */
 public class Busca extends javax.swing.JFrame {
+    private final BuscaController controller;
 
     /**
      * Creates new form Busca
      */
     public Busca() {
+        this.controller = new BuscaController(this);
         initComponents();
+        this.controller.atualizarComboBox();
     }
 
     /**
@@ -30,42 +38,59 @@ public class Busca extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jButton2 = new javax.swing.JButton();
-        jComboBoxTurma = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jComboBoxTurma = new javax.swing.JComboBox<String>();
+        jTextFieldCodigo = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setText("BUSCAR");
+        jButton2.setText("BUSCAR ALUNO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 160, 70));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 140, 30));
 
-        getContentPane().add(jComboBoxTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 130, 40));
+        jComboBoxTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione" }));
+        jComboBoxTurma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTurmaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 120, 30));
+
+        jTextFieldCodigo.setText("Código");
+        getContentPane().add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 110, 30));
+
+        jButton3.setText("BUSCAR TURMA");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 140, 30));
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-
+                "CÓDIGO", "NOME", "SERIE", "TURMA"
             }
         ));
+        jScrollPane1.setViewportView(jTable);
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jComboBoxTurma, org.jdesktop.beansbinding.ELProperty.create("Aluno"), jTable, org.jdesktop.beansbinding.BeanProperty.create("selectedElements"));
-        bindingGroup.addBinding(binding);
-
-        jScrollPane2.setViewportView(jTable);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, 80));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, 140));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/capa-blog-diferenciar-escola-min-1024x683.png"))); // NOI18N
         jButton1.setText("jButton1");
@@ -74,9 +99,7 @@ public class Busca extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 350));
-
-        bindingGroup.bind();
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 540, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,8 +109,16 @@ public class Busca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+this.controller.buscarAluno();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBoxTurmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTurmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTurmaActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  this.controller.buscarTurma();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,10 +158,11 @@ public class Busca extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBoxTurma;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBoxTurma;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private javax.swing.JTextField jTextFieldCodigo;
     // End of variables declaration//GEN-END:variables
 
     public JComboBox getjComboBoxTurma() {
@@ -149,7 +181,15 @@ public class Busca extends javax.swing.JFrame {
         this.jTable = jTable;
     }
 
-    
+    public JTextField getjTextFieldCodigo() {
+        return jTextFieldCodigo;
+    }
+
+    public void setjTextFieldCodigo(JTextField jTextFieldCodigo) {
+        this.jTextFieldCodigo = jTextFieldCodigo;
+    }
+
+
 
 
 

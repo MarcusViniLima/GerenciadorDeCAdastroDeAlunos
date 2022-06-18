@@ -7,73 +7,77 @@ package Models;
 
 import java.util.ArrayList;
 
-public class Professor  extends EntidadeEscolar {
+public class Professor   {
     
      // Atributos ---------------------------------------------------------------------------
     private String codigoProfessor;
-    ArrayList<Turma> turmas;
-    private Disciplina disciplinas;
+    ArrayList<String> turmas;
+    private String disciplinas;
+    private String nome, cidade, bairro, estado, telefone;
 
-    // Construtores ------------------------------------------------------------------------
-    public Professor(String codigoProfessor, String nome, String endereco, String telefone, Disciplina disciplina) {
-        super(nome, endereco, telefone);
-        this.codigoProfessor = codigoProfessor;
-        this.disciplinas = disciplina;
-        this.turmas = new ArrayList<Turma>();
-    }
-
-    //implementação obrigatória dos metódos abstratos da classe pai
-    @Override
-    public String getNome() {//implementação do método abstrato
-        return nome;
-    }
-    @Override
-    public String getEndereco() {
-        return endereco;
-    }
-    @Override
-    public String getTelefone() {
-        return telefone;
-    }
-    @Override
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    @Override
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    @Override
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    //Getters & Setters ------------------------------------------------------------------
-    public Disciplina getDisciplina() {
-        return disciplinas;
-    }
     public String getCodigoProfessor() {
         return codigoProfessor;
     }
 
-
     public void setCodigoProfessor(String codigoProfessor) {
         this.codigoProfessor = codigoProfessor;
     }
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplinas = disciplina;
+
+    public String getDisciplinas() {
+        return disciplinas;
     }
 
-    public void setTurmas(Turma turmas) {
+    public void setDisciplinas(String disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public ArrayList<String> getTurmas() {
+        return turmas;
+    }
+    public void setTurmas(String turmas) {
         this.turmas.add(turmas);
     }
-    // mostar os atributos de professor -------------------------------------------------------------------
+    
 
-
-    @Override
-    public String toString() {
-        return "Professor: "+getNome()+ "| Código: "+getCodigoProfessor()+" | Endereço: "+getEndereco()+" | Telefone: "+getTelefone()+
-                "| Ministra "+disciplinas.getNome()+" | Turmas: "+turmas.toString()+"|";
-    }
     
 }

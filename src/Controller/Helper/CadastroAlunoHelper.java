@@ -19,32 +19,36 @@ public class CadastroAlunoHelper implements IHelper {
         this.view = view;
     }
     
-    public void preencherTurma(){
-        
-    }
-
     @Override
     public Aluno obterModelo() {
         
-        String codigo = view.getjTextFieldNOme().getText();
-        String nome = view.getjTextFieldCodigo().getText();
-        String serie = view.getjTextFieldSerie().getText();
+        String nome = view.getjTextFieldNOme().getText();
+        String codigo = view.getjTextFieldCodigo().getText();
+        String serie = (String) view.getjComboBoxserie().getSelectedItem();
         String telefone = view.getjTextFieldTelefone().getText();
-        String endereco = view.getjTextFieldEstado().getText()+", " + view.getjTextFieldCidade()+", " + view.getjTextFieldBairro();
-        String turma = view.getjComboBoxTurma().getToolTipText();
-       
-        Aluno aluno = new Aluno(codigo, serie, nome, endereco, telefone, turma);
-        return aluno;
+        String cidade = view.getjTextFieldCidade().getText();
+        String email = view.getjTextFieldEMAIL().getText();
+        String estado = view.getjTextFieldEstado().getText();
+        String turma = (String) view.getjComboBoxTurma().getSelectedItem();
+       Aluno modelo = new Aluno();
+       modelo.setCidade(cidade);
+       modelo.setCodigoAluno(codigo);
+       modelo.setEmail(email);
+       modelo.setNome(nome);
+       modelo.setSerie(serie);
+       modelo.setTelefone(telefone);
+       modelo.setTurma(turma);
+       modelo.setEstado(estado);
+        return modelo;
     }
 
     @Override
     public void limparTela() {
      view.getjTextFieldCodigo().setText("");
      view.getjTextFieldCidade().setText("");
-     view.getjTextFieldBairro().setText("");
+     view.getjTextFieldEMAIL().setText("");
      view.getjTextFieldEstado().setText("");
      view.getjTextFieldNOme().setText("");
-     view.getjTextFieldSerie().setText("");
      view.getjTextFieldTelefone().setText("");
     }
     

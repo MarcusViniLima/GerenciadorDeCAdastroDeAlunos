@@ -10,6 +10,9 @@ import Controller.Helper.LoginHelper;
 import Models.Secretaria;
 import View.Login;
 import Models.DAO.SecretariaDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,18 +31,22 @@ public class LoginController {
     public void entrarNoSistema(){
         //pegar usuario da view
         //pesquisar usuario do banco
-       /* Secretaria secretaria = helper.obterModelo();
+        try {
+            Secretaria secretaria = helper.obterModelo();
         SecretariaDAO secretariaDAO = new SecretariaDAO();
+        ResultSet rsSecretariaDao = secretariaDAO.loginSecretaria(secretaria);
         
-        Secretaria secretariaAutenticada = secretariaDAO.selectPorNomeESenha(secretaria);
-        
-        if(secretariaAutenticada != null){*/
+        if(rsSecretariaDao.next()){
             View.MenuPrincipal Menu = new View.MenuPrincipal();
             Menu.setVisible(true);
             this.view.dispose();
-        /*}else{
-            view.exibemensagem("Usuario inválido");
-        }*/
+        }else{
+            view.exibemensagem("Usuario ou senha inválido");
+        }
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null,"LoginController "+ erro);
+        }
         
     }
     

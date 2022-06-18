@@ -16,12 +16,7 @@ public class Disciplina {
     private String tipo;
     private String nome;
 
-    //Construtor--------------------------------------------------
-    public Disciplina(String nome, String codigoDisciplina, String tipo){
-        this.codigoDisciplina = codigoDisciplina;
-        this.tipo = tipo;
-        this.nome=nome;
-    }
+   
 
     //Getters e Setters------------------------------------------
     public String getCodigoDisciplina(){
@@ -34,10 +29,17 @@ public class Disciplina {
         return nome;
     }
 
-    //mostrar os atributos da disciplina ---------------------------------------------
-    @Override
-    public String toString() {
-        return "Disciplina: "+getNome()+" | Código: "+getCodigoDisciplina()+" | Tipo: "+getTipo();
+    public void setCodigoDisciplina(String codigoDisciplina) {
+        this.codigoDisciplina = codigoDisciplina;
     }
-    
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+  
 }

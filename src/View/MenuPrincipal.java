@@ -6,6 +6,12 @@
 package View;
 
 import Controller.MenuPrincipalController;
+import Models.Aluno;
+import Models.DAO.AlunoDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         this.controller = new MenuPrincipalController(this);
         initComponents();
+        this.listarValores();
     }
 
     /**
@@ -33,12 +40,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jFrame1 = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableAlunos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
         jMenuItemAcdastroAluno = new javax.swing.JMenuItem();
         jMenuOperações = new javax.swing.JMenu();
-        jMenuItemLista = new javax.swing.JMenuItem();
         jRadioButtonMenuItemBusca = new javax.swing.JRadioButtonMenuItem();
 
         jMenu1.setText("jMenu1");
@@ -57,8 +66,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setText("LISTA DE ALUNOS:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        jTableAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "NOME", "CODIGO", "SÉRIE", "TURMA", "EMAIL", "TELEFONE", "CIDADE", "ESTADO"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableAlunos);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 640, 90));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/capa-blog-diferenciar-escola-min-1024x683.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 659, 374));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -10, 659, 374));
 
         jMenuCadastro.setText("Cadastro");
 
@@ -74,15 +102,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCadastro);
 
         jMenuOperações.setText("Operações");
-
-        jMenuItemLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/Icons/relatorioTrabalho-icon.png"))); // NOI18N
-        jMenuItemLista.setText("Lista");
-        jMenuItemLista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemListaActionPerformed(evt);
-            }
-        });
-        jMenuOperações.add(jMenuItemLista);
 
         jRadioButtonMenuItemBusca.setSelected(true);
         jRadioButtonMenuItemBusca.setText("Busca");
@@ -100,10 +119,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItemListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListaActionPerformed
-this.controller.navegarParaLista();
-    }//GEN-LAST:event_jMenuItemListaActionPerformed
 
     private void jMenuItemAcdastroAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAcdastroAlunoActionPerformed
 this.controller.navegarParaCadastroAluno();
@@ -151,12 +166,46 @@ this.controller.navegarParaBusca();        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenuItem jMenuItemAcdastroAluno;
-    private javax.swing.JMenuItem jMenuItemLista;
     private javax.swing.JMenu jMenuOperações;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemBusca;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableAlunos;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getjTableAlunos() {
+        return jTableAlunos;
+    }
+
+    public void setjTableAlunos(JTable jTableAlunos) {
+        this.jTableAlunos = jTableAlunos;
+    }
+    
+    
+    
+    private void listarValores() {
+            try {
+                AlunoDAO objAluno = new AlunoDAO();
+
+                DefaultTableModel model;
+                model = (DefaultTableModel) this.getjTableAlunos().getModel();
+                model.setNumRows(0);
+
+                ArrayList<Aluno> listaAlunos = objAluno.ListarAluno();
+
+                listaAlunos.stream().forEach((listaAluno) -> {
+                    model.addRow(new Object[]{listaAluno.getCodigoAluno(), listaAluno.getNome(), listaAluno.getSerie(), listaAluno.getTurma(), listaAluno.getEmail(), listaAluno.getTelefone(), listaAluno.getCidade(), listaAluno.getEstado()});
+                });
+
+            } catch (Exception erro) {
+                JOptionPane.showMessageDialog(null, "MenuPrincipal" + erro.getMessage());
+            }
+            
+    }
+
+
 }

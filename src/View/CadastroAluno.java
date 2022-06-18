@@ -6,6 +6,8 @@
 package View;
 
 import Controller.CadastroAlunoController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -22,6 +24,7 @@ public class CadastroAluno extends javax.swing.JFrame {
     public CadastroAluno() {
         this.controller = new CadastroAlunoController(this);
         initComponents();
+        this.controller.atualizarComboBox();
     }
 
     /**
@@ -35,42 +38,51 @@ public class CadastroAluno extends javax.swing.JFrame {
 
         jTextFieldCodigo = new javax.swing.JTextField();
         jTextFieldNOme = new javax.swing.JTextField();
-        jTextFieldSerie = new javax.swing.JTextField();
         jTextFieldTelefone = new javax.swing.JTextField();
         jTextFieldEstado = new javax.swing.JTextField();
         jTextFieldCidade = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextFieldBairro = new javax.swing.JTextField();
-        jComboBoxTurma = new javax.swing.JComboBox();
+        jTextFieldEMAIL = new javax.swing.JTextField();
+        jComboBoxTurma = new javax.swing.JComboBox<String>();
+        jComboBoxserie = new javax.swing.JComboBox();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabelFUNDOPRETO = new javax.swing.JLabel();
+        jLabelFUNDO = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextFieldCodigo.setText("Código do Aluno");
         jTextFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCodigoActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 140, 40));
+        getContentPane().add(jTextFieldCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 140, 30));
 
-        jTextFieldNOme.setText("Nome Do Aluno");
-        getContentPane().add(jTextFieldNOme, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 140, 40));
+        jTextFieldNOme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNOmeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldNOme, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 140, 30));
 
-        jTextFieldSerie.setText("Serie Do Aluno");
-        getContentPane().add(jTextFieldSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 140, 40));
-
-        jTextFieldTelefone.setText("Telefone");
-        getContentPane().add(jTextFieldTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 140, 40));
-
-        jTextFieldEstado.setText("Estado");
-        getContentPane().add(jTextFieldEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 140, 40));
-
-        jTextFieldCidade.setText("Cidade");
-        getContentPane().add(jTextFieldCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 140, 40));
+        jTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTelefoneActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 140, 30));
+        getContentPane().add(jTextFieldEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, 30));
+        getContentPane().add(jTextFieldCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 140, 30));
 
         jButton1.setText("CADASTRAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -81,29 +93,110 @@ public class CadastroAluno extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 120, 50));
 
         jButton2.setText("ATUALIZAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 120, 50));
 
         jButton3.setText("DELETAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, 120, 50));
 
-        jTextFieldBairro.setText("Bairro");
-        getContentPane().add(jTextFieldBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 140, 40));
+        jTextFieldEMAIL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEMAILActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextFieldEMAIL, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 140, 30));
 
-        getContentPane().add(jComboBoxTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, 140, 40));
+        jComboBoxTurma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione" }));
+        getContentPane().add(jComboBoxTurma, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 140, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/capa-blog-diferenciar-escola-min-1024x683.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 580));
+        jComboBoxserie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione" }));
+        getContentPane().add(jComboBoxserie, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 140, 30));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("CÓDIGO TURMA:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, -1, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("EMAIL:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("CIDADE:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ESTADO");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("NOME DO ALUNO:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("TELEFONE:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("CÓDIGO ALUNO:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("SÉRIE DO ALUNO:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+
+        jLabelFUNDOPRETO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/painel-login.png"))); // NOI18N
+        getContentPane().add(jLabelFUNDOPRETO, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -70, 480, 680));
+
+        jLabelFUNDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Imagem/capa-blog-diferenciar-escola-min-1024x683.png"))); // NOI18N
+        getContentPane().add(jLabelFUNDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            controller.cadastrar();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCodigoActionPerformed
+
+    private void jTextFieldNOmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNOmeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNOmeActionPerformed
+
+    private void jTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTelefoneActionPerformed
+
+    private void jTextFieldEMAILActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEMAILActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEMAILActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            this.controller.atualizar();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastroAluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+this.controller.deletar();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,14 +237,23 @@ public class CadastroAluno extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBoxTurma;
+    private javax.swing.JComboBox<String> jComboBoxTurma;
+    private javax.swing.JComboBox jComboBoxserie;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextFieldBairro;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelFUNDO;
+    private javax.swing.JLabel jLabelFUNDOPRETO;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldCodigo;
+    private javax.swing.JTextField jTextFieldEMAIL;
     private javax.swing.JTextField jTextFieldEstado;
     private javax.swing.JTextField jTextFieldNOme;
-    private javax.swing.JTextField jTextFieldSerie;
     private javax.swing.JTextField jTextFieldTelefone;
     // End of variables declaration//GEN-END:variables
 
@@ -163,13 +265,15 @@ public class CadastroAluno extends javax.swing.JFrame {
         this.jComboBoxTurma = jComboBoxTurma;
     }
 
-    public JTextField getjTextFieldBairro() {
-        return jTextFieldBairro;
+    public JTextField getjTextFieldEMAIL() {
+        return jTextFieldEMAIL;
     }
 
-    public void setjTextFieldBairro(JTextField jTextFieldBairro) {
-        this.jTextFieldBairro = jTextFieldBairro;
+    public void setjTextFieldEMAIL(JTextField jTextFieldEMAIL) {
+        this.jTextFieldEMAIL = jTextFieldEMAIL;
     }
+
+    
 
     public JTextField getjTextFieldCidade() {
         return jTextFieldCidade;
@@ -203,12 +307,12 @@ public class CadastroAluno extends javax.swing.JFrame {
         this.jTextFieldNOme = jTextFieldNOme;
     }
 
-    public JTextField getjTextFieldSerie() {
-        return jTextFieldSerie;
+    public JComboBox getjComboBoxserie() {
+        return jComboBoxserie;
     }
 
-    public void setjTextFieldSerie(JTextField jTextFieldSerie) {
-        this.jTextFieldSerie = jTextFieldSerie;
+    public void setjComboBoxserie(JComboBox jComboBoxserie) {
+        this.jComboBoxserie = jComboBoxserie;
     }
 
     public JTextField getjTextFieldTelefone() {

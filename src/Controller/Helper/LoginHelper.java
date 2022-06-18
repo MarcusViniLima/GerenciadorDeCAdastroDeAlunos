@@ -11,7 +11,7 @@ import View.Login;
  *
  * @author marcu
  */
-public class LoginHelper implements IHelper {
+public class LoginHelper  {
     
     private final Login view;
 
@@ -19,25 +19,14 @@ public class LoginHelper implements IHelper {
         this.view = view;
     }
     
-    @Override
+    
     public Secretaria obterModelo(){
         String nome = view.getjTextFieldUsuario().getText();
-        String senha = view.getjPasswordFieldsenha().getText();
-        Secretaria modelo = new Secretaria (nome, senha);
+        String senha = view.getjTextFieldSenha().getText();
+        Secretaria modelo = new Secretaria();
+        modelo.setNome(nome);
+        modelo.setSenha(senha);
         return modelo;
     }
     
-    public void setarModelo(Secretaria modelo){
-        String nome = modelo.getNome();
-        String senha = modelo.getSenha();
-        
-        view.getjTextFieldUsuario().setText(nome);
-        view.getjPasswordFieldsenha().setText(senha);
-    }
-    
-    @Override
-    public void limparTela(){
-        view.getjTextFieldUsuario().setText("");
-        view.getjPasswordFieldsenha().setText("");
-    }
 }

@@ -18,12 +18,15 @@ public class BancoDAO {
     
     public Connection conectaBD(){
         Connection conn = null;
-        try {
-            String url = "jdbc:mysql://localhost:3306/escola?user=root&passaword=1234";
-            conn = DriverManager.getConnection(url);
+        try { 
+            String usuario = "root";
+            String senha = "1234";
+            String url = "jdbc:mysql://localhost:3306/escola?autoReconnect=true&useSSL=false";
+            conn = DriverManager.getConnection(url, usuario, senha);
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,"BancoDAO"+ erro.getMessage());
         }
+       
         return conn;
     }
     

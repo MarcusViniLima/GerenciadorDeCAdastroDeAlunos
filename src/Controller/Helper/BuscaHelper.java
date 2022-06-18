@@ -11,7 +11,6 @@ package Controller.Helper;
  */
 
     import Models.Aluno;
-import Models.DAO.AlunoDAO;
 import View.Busca;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,21 +26,27 @@ public class BuscaHelper {
         this.view = view;
     }
 
-    
+    public Aluno obterModelo(){
+        String turma = (String) view.getjComboBoxTurma().getSelectedItem();
+        String codigo = view.getjTextFieldCodigo().getText();
+        Aluno aluno = new Aluno();
+        aluno.setTurma(turma);
+        aluno.setCodigoAluno(codigo);
+        return aluno;
+    }
     
     public void limparTela(){
-        view.getjTable().setVisible(false);
-        
-       
+        this.view.getjTextFieldCodigo().setText("");
     }
     
-    public void criarTabela(){
-        if(view.getjComboBoxTurma().equals("Aluno")){
-            view.getjTable().setVisible(true);
-        } if(view.getjComboBoxTurma().equals("Professor")){
-            view.getjTable().setVisible(true);
+    public void resetTable(){
+        DefaultTableModel model;
+                model = (DefaultTableModel) this.view.getjTable().getModel();
+                model.setNumRows(0);
         
-        }
     }
+ 
+    
+    
 }
 

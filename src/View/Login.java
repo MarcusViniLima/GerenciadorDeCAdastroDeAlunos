@@ -35,8 +35,10 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonEntrar = new javax.swing.JButton();
-        jPasswordFieldsenha = new javax.swing.JPasswordField();
         jTextFieldUsuario = new javax.swing.JTextField();
+        jTextFieldSenha = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabelLogin = new javax.swing.JLabel();
         jLabelFundo_Preto = new javax.swing.JLabel();
@@ -52,18 +54,25 @@ public class Login extends javax.swing.JFrame {
                 jButtonEntrarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 100, 30));
+        getContentPane().add(jButtonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 100, 30));
 
-        jPasswordFieldsenha.setText("....");
-        getContentPane().add(jPasswordFieldsenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 110, 30));
-
-        jTextFieldUsuario.setText("Usuario");
         jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 110, 30));
+        getContentPane().add(jTextFieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 110, 30));
+        getContentPane().add(jTextFieldSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 110, 30));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Senha:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Usuário:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,20 +141,24 @@ this.controller.entrarNoSistema();
     private javax.swing.JButton jButtonEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelFundo;
     private javax.swing.JLabel jLabelFundo_Preto;
     private javax.swing.JLabel jLabelLogin;
-    private javax.swing.JPasswordField jPasswordFieldsenha;
+    private javax.swing.JTextField jTextFieldSenha;
     private javax.swing.JTextField jTextFieldUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public JPasswordField getjPasswordFieldsenha() {
-        return jPasswordFieldsenha;
+    public JTextField getjTextFieldSenha() {
+        return jTextFieldSenha;
     }
 
-    public void setjPasswordFieldsenha(JPasswordField jPasswordFieldsenha) {
-        this.jPasswordFieldsenha = jPasswordFieldsenha;
+    public void setjTextFieldSenha(JTextField jTextFieldSenha) {
+        this.jTextFieldSenha = jTextFieldSenha;
     }
+
+    
 
     public JTextField getjTextFieldUsuario() {
         return jTextFieldUsuario;
